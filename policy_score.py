@@ -43,7 +43,9 @@ def score(input_pol):
 					score += 0.5
 	return score
 
-network_params = [(3,1), (3,7), (7,7)]
+network_params = [(3,1), (3,3), (3,5), (3,7), (3,9), (3,11), 
+				  (5,7),
+				  (7,7)]
 results = {}
 for parameters in network_params:
 	NUM_LAYERS, k = parameters

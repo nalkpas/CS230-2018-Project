@@ -14,7 +14,7 @@ LongTensor = torch.LongTensor
 ByteTensor = torch.ByteTensor
 
 # build network
-NUM_LAYERS = 7
+NUM_LAYERS = 5
 k = 7
 # k = np.rint(NUM_LAYERS / 2 + 0.5)
 

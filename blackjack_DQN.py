@@ -21,7 +21,7 @@ EPS_END = 0.05
 EPS_DECAY = 10000
 WEIGHT_DECAY = 0.0001
 
-NUM_LAYERS = 7
+NUM_LAYERS = 5
 # k = np.rint(NUM_LAYERS / 2 + 0.5)
 k = 7
 num_episodes = 500000
