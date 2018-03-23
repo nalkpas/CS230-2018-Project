@@ -6,7 +6,7 @@ __BlackjackSM.py__ is a state machine for playing blackjack. It follows a maxima
 
 ## blackjack_DQN.py 
 
-__blackjack_DQN.py__ contains code for a fully connected linear deep _Q_-network.
+__blackjack_DQN.py__ contains PyTorch code for a fully connected linear deep _Q_-network.
 
 ## blackjack_eval.py 
 
