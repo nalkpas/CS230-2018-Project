@@ -8,7 +8,7 @@ import pdb
 state_machine = BlackjackSM()
 
 def str_to_state(str):
-	output = str.split("-")
+	output = str.split(" ")
 	output = [float(v) for v in output]
 	output = [int(v) for v in output]
 	return tuple(output)

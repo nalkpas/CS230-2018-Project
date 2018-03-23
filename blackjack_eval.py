@@ -14,8 +14,8 @@ LongTensor = torch.LongTensor
 ByteTensor = torch.ByteTensor
 
 # build network
-NUM_LAYERS = 5
-k = 7
+NUM_LAYERS = 11
+k = 13
 # k = np.rint(NUM_LAYERS / 2 + 0.5)
 
 state_machine = BlackjackSM()
@@ -94,19 +94,3 @@ with open("policies/blackjack_DQN_pol_" + str(NUM_LAYERS) + "-" + str(k) + ".csv
 		for action in actions[:-1]:
 			file.write(str(act_lookup[action]) + ",")
 		file.write(str(act_lookup[actions[-1]]) + "\n")
-
-avg_reward = 0
-for episode in range(50000):
-	state_machine.new_hand()
-
-	while True:
-		scores = model(Variable(FloatTensor(np.array([state_machine.state()])), volatile=True)).data
-		mask = ByteTensor(1 - state_machine.mask())
-		action = (scores.masked_fill_(mask, -16)).max(-1)[1][0]
-		state_machine.do(action)
-
-		if state_machine.terminal:
-			break
-
-	avg_reward += state_machine.reward() / 50000
-print(avg_reward) 

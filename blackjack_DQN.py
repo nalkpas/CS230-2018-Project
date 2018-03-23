@@ -16,21 +16,24 @@ ByteTensor = torch.ByteTensor
 # hyperparameters
 BATCH_SIZE = 256
 GAMMA = 0.999
-EPS_START = 1
+# EPS_START = 1
+EPS_START = 0.05
 EPS_END = 0.05
-EPS_DECAY = 10000
+EPS_DECAY = 20000
 WEIGHT_DECAY = 0.0001
 
-NUM_LAYERS = 5
+NUM_LAYERS = 11
 # k = np.rint(NUM_LAYERS / 2 + 0.5)
-k = 7
-num_episodes = 500000
-decay_period = num_episodes - 100000
+k = 13
+num_episodes = 800000
+# start_period = 50000
+start_period = 0
+decay_period = num_episodes - 150000 - start_period
 learning_rate = 0.0001
 # how often to take gradient descent steps
 C = 4
 
-graph_interval = 5000
+graph_interval = 10000
 
 state_machine = BlackjackSM()
 n_in = state_machine.len_state
@@ -103,7 +106,10 @@ counter = 0
 def select_action():
 	global counter
 	unif_draw = np.random.rand()
-	eps = EPS_END + max((EPS_START - EPS_END) * (1 - np.exp((counter - decay_period)/EPS_DECAY)), 0)
+	if counter < start_period:
+		return LongTensor(np.array([random.choice(state_machine.actions())]))
+
+	eps = EPS_END + max((EPS_START - EPS_END) * (1 - np.exp((counter - start_period - decay_period)/EPS_DECAY)), 0)
 	
 	scores = model(Variable(FloatTensor(np.array([state_machine.state()])), volatile=True)).data
 	mask = ByteTensor(1 - state_machine.mask())
@@ -143,8 +149,8 @@ def optimize_model():
 		not_terminal_states = Variable(torch.cat([s for s in batch[2] if s is not None]), volatile=True)
 		masks = ByteTensor(np.array([1 - state_machine.mask_for(s) for s in not_terminal_states.data.numpy()]))
 		V_s[not_terminal] = (model(not_terminal_states).data.masked_fill_(masks, -16)).max(1)[0]
-		observed_sa = reward_batch + (V_s * GAMMA)
 		model.train()
+	observed_sa = reward_batch + (V_s * GAMMA)
 
 	loss = F.smooth_l1_loss(Q_sa, observed_sa)
 

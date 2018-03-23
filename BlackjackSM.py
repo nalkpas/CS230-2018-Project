@@ -102,15 +102,17 @@ class BlackjackSM:
 		self.stand()
 
 	def split(self):
-		if self.hand == 12:
+		if self.hand == 32:
 			self.hand = 1
 		else:
-			self.hand /= 2
+			self.hand //= 2
 		self.bet *= 2
 		new_card = self.draw()
 		if new_card != self.hand:
 			self.pair = False
 		self.hand = self.calculate_hand(self.hand, new_card)
+		if self.hand == 21:
+			self.terminal = True
 
 	def do(self, action):
 		if action == 0:
@@ -149,7 +151,7 @@ class BlackjackSM:
 			self.complete()
 
 		if self.dealer_hand == 41:
-			return -self.bet
+			return -1
 
 		if self.hand in self.soft:
 			self.hand -= 20
@@ -167,9 +169,9 @@ class BlackjackSM:
 
 	def state(self):
 		if self.hand in self.soft: 
-			return (self.hand - 20, 1, 1*self.new, 1*self.pair, self.dealer_hand)
+			return tuple(map(int,[self.hand - 20, 1, 1*self.new, 1*self.pair, self.dealer_hand]))
 		else:
-			return (self.hand, 0, 1*self.new, 1*self.pair, self.dealer_hand)
+			return tuple(map(int,[self.hand, 0, 1*self.new, 1*self.pair, self.dealer_hand]))
 
 	def set_state(self,state):
 		self.hand = state[0] + 20*state[1]

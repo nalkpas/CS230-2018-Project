@@ -9,9 +9,9 @@ state,2,3,4,5,6,7,8,9,10,11,
 12 0 0,hit,hit,stand,stand,stand,hit,hit,hit,hit,hit
 13 0 0,stand,stand,stand,stand,stand,hit,hit,hit,hit,hit
 14 0 0,stand,stand,stand,stand,stand,hit,hit,hit,hit,hit
-15 0 0,stand,stand,stand,stand,stand,hit,hit,hit,XH,XH
-16 0 0,stand,stand,stand,stand,stand,hit,hit,hit,XH,XH
-17 0 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,XS
+15 0 0,stand,stand,stand,stand,stand,hit,hit,hit,XH,hit
+16 0 0,stand,stand,stand,stand,stand,hit,hit,XH,XH,XH
+17 0 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
 18 0 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
 19 0 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
 20 0 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
@@ -20,8 +20,8 @@ state,2,3,4,5,6,7,8,9,10,11,
 15 1 0,hit,hit,double,double,double,hit,hit,hit,hit,hit
 16 1 0,hit,hit,double,double,double,hit,hit,hit,hit,hit
 17 1 0,hit,double,double,double,double,hit,hit,hit,hit,hit
-18 1 0,stand,DS,DS,DS,DS,stand,stand,hit,hit,hit
-19 1 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
+18 1 0,DS,DS,DS,DS,DS,stand,stand,hit,hit,hit
+19 1 0,stand,stand,stand,stand,DS,stand,stand,stand,stand,stand
 20 1 0,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
 4 0 1,split,split,split,split,split,split,hit,hit,hit,hit
 6 0 1,split,split,split,split,split,split,hit,hit,hit,hit
@@ -29,7 +29,7 @@ state,2,3,4,5,6,7,8,9,10,11,
 10 0 1,double,double,double,double,double,double,double,double,hit,hit
 12 0 1,split,split,split,split,split,hit,hit,hit,hit,hit
 14 0 1,split,split,split,split,split,split,hit,hit,hit,hit
-16 0 1,split,split,split,split,split,split,split,split,split,XP
+16 0 1,split,split,split,split,split,split,split,split,split,split
 18 0 1,split,split,split,split,split,stand,split,split,stand,stand
 20 0 1,stand,stand,stand,stand,stand,stand,stand,stand,stand,stand
 12 1 1,split,split,split,split,split,split,split,split,split,split
